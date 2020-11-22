@@ -14,6 +14,7 @@ const postcss = require('postcss')
 const autoprefixer = require('autoprefixer')
 const tailwindcss = require('tailwindcss')
 const purgecss = require('@fullhuman/postcss-purgecss')
+const { parse: htmlParse } = require('node-html-parser')
 
 // Tidy up
 rimraf.sync(path.resolve('.cobblestone'))
@@ -89,12 +90,21 @@ webpack(
         ),
       )
 
+      const parsedHtml = htmlParse(html)
+
+      const head = parsedHtml.querySelector('head')
+
+      // Add CSS to head
+      if (head) {
+        head.appendChild('<link rel="stylesheet" href="/css/style.css">')
+      }
+
       const outPath =
         name === 'index'
           ? path.resolve('site', 'index.html')
           : path.resolve('site', name, 'index.html')
 
-      fs.outputFileSync(outPath, html, console.error)
+      fs.outputFileSync(outPath, parsedHtml.toString(), console.error)
     })
 
     postcss([
