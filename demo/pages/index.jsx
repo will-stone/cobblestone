@@ -5,12 +5,13 @@ const Index = () => (
     <head>
       <meta charSet="utf-8" />
     </head>
-    <body>
+    <body className="container">
       <div>
         <PageTitle>Hello</PageTitle>
         <p>hello</p>
-        <p>
+        <p className="text-blue-300">
           <a href="/about">About</a>
+          <span className="text-transparent">transparent?</span>
         </p>
       </div>
     </body>
