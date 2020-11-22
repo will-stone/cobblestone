@@ -1,5 +1,8 @@
 #!/usr/bin/env node
+/* eslint-disable no-console */
+/* eslint-disable node/global-require */
 
+// Imports
 const fs = require('fs-extra')
 const { createElement } = require('react')
 const ReactDOMServer = require('react-dom/server')
@@ -7,6 +10,10 @@ const path = require('path')
 const glob = require('glob')
 const webpack = require('webpack')
 const rimraf = require('rimraf')
+const postcss = require('postcss')
+const autoprefixer = require('autoprefixer')
+const tailwindcss = require('tailwindcss')
+const purgecss = require('@fullhuman/postcss-purgecss')
 
 // Tidy up
 rimraf.sync(path.resolve('.cobblestone'))
@@ -77,8 +84,9 @@ webpack(
       const { name } = path.parse(page)
 
       const html = ReactDOMServer.renderToStaticMarkup(
-        // eslint-disable-next-line node/global-require
-        createElement(require(path.resolve('.cobblestone', `${name}.js`)).default),
+        createElement(
+          require(path.resolve('.cobblestone', `${name}.js`)).default,
+        ),
       )
 
       const outPath =
@@ -89,6 +97,35 @@ webpack(
       fs.outputFileSync(outPath, html, console.error)
     })
 
-    console.log('done')
+    postcss([
+      tailwindcss,
+      autoprefixer,
+      purgecss({
+        content: [path.resolve('site', '**', '*.html')],
+      }),
+    ])
+      .process(
+        `
+        @tailwind base;
+        @tailwind components;
+        @tailwind utilities;`,
+        { from: undefined },
+      )
+      .then((result) => {
+        fs.outputFileSync(
+          path.resolve('site', 'css', 'style.css'),
+          result.css,
+          console.error,
+        )
+        if (result.map) {
+          fs.writeFile(
+            path.resolve('site', 'css', 'style.css.map'),
+            result.map,
+            console.error,
+          )
+        }
+      })
+
+    console.log('Site built')
   },
 )
