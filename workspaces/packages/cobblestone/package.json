@@ -10,7 +10,8 @@
     "cobblestone.js"
   ],
   "scripts": {
-    "release": "np"
+    "release": "np",
+    "test": "exit 0"
   },
   "dependencies": {
     "@babel/core": "^7.12.3",
@@ -33,5 +34,8 @@
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
+  },
+  "np": {
+    "yarn": true
   }
 }
