@@ -1,6 +1,6 @@
 {
   "name": "cobblestone",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "private": false,
   "description": "A very opinionated static site generator",
   "bugs": {
@@ -23,7 +23,7 @@
     "cobblestone.js"
   ],
   "scripts": {
-    "release": "np",
+    "release": "yarn version",
     "test": "exit 0"
   },
   "dependencies": {
@@ -43,9 +43,6 @@
     "tailwindcss": "^2.0.1",
     "webpack": "^5.6.0"
   },
-  "devDependencies": {
-    "np": "^7.0.0"
-  },
   "peerDependencies": {
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
@@ -53,6 +50,5 @@
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
-  },
-  "np": {}
+  }
 }
