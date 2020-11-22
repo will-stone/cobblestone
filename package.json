@@ -1,11 +1,32 @@
 {
-  "name": "cobblestone-mono",
-  "private": true,
+  "name": "cobblestone",
+  "version": "0.0.7",
+  "private": false,
+  "description": "A very opinionated static site generator",
+  "bugs": {
+    "url": "https://github.com/will-stone/cobblestone/issues",
+    "email": "will@wstone.io"
+  },
+  "repository": {
+    "url": "https://github.com/will-stone/cobblestone"
+  },
   "license": "MIT",
-  "workspaces": {
-    "packages": [
-      "workspaces/**"
-    ]
+  "author": {
+    "name": "Will Stone",
+    "email": "will@wstone.io",
+    "url": "https://wstone.io"
+  },
+  "bin": {
+    "cobblestone": "cobblestone.js"
+  },
+  "files": [
+    "cobblestone.js"
+  ],
+  "scripts": {
+    "release": "np",
+    "test": "exit 0",
+    "demo:build": "cd demo && node ../cobblestone.js",
+    "demo:serve": "cd demo && npx serve site"
   },
   "prettier": "@will-stone/prettier-config",
   "eslintConfig": {
@@ -16,9 +37,37 @@
     ]
   },
   "dependencies": {
+    "@babel/core": "^7.12.3",
+    "@babel/node": "^7.12.6",
+    "@babel/preset-env": "^7.12.1",
+    "@babel/preset-react": "^7.12.5",
+    "@fullhuman/postcss-purgecss": "^3.0.0",
+    "autoprefixer": "^10.0.2",
+    "babel-loader": "^8.2.1",
+    "fs-extra": "^9.0.1",
+    "glob": "^7.1.6",
+    "html-minifier": "^4.0.0",
+    "node-html-parser": "^2.0.0",
+    "postcss": "^8.1.9",
+    "rimraf": "^3.0.2",
+    "tailwindcss": "^2.0.1",
+    "webpack": "^5.6.0"
+  },
+  "devDependencies": {
     "@will-stone/eslint-config": "^1.29.0",
     "@will-stone/prettier-config": "^3.1.1",
     "eslint": "^7.14.0",
-    "prettier": "^2.1.2"
+    "np": "^7.0.0",
+    "prettier": "^2.1.2",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "peerDependencies": {
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
   }
 }
