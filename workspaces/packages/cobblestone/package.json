@@ -35,7 +35,5 @@
     "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
-  "np": {
-    "yarn": true
-  }
+  "np": {}
 }
