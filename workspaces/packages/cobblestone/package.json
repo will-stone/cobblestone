@@ -1,6 +1,6 @@
 {
   "name": "cobblestone",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "private": false,
   "description": "A very opinionated static site generator",
   "bugs": {
@@ -23,7 +23,7 @@
     "cobblestone.js"
   ],
   "scripts": {
-    "release": "yarn version",
+    "release": "yarn version && npm publish",
     "test": "exit 0"
   },
   "dependencies": {
