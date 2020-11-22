@@ -2,7 +2,20 @@
   "name": "cobblestone",
   "version": "0.0.2",
   "private": false,
+  "description": "A very opinionated static site generator",
+  "bugs": {
+    "url": "https://github.com/will-stone/cobblestone/issues",
+    "email": "will@wstone.io"
+  },
+  "repository": {
+    "url": "https://github.com/will-stone/cobblestone"
+  },
   "license": "MIT",
+  "author": {
+    "name": "Will Stone",
+    "email": "will@wstone.io",
+    "url": "https://wstone.io"
+  },
   "bin": {
     "cobblestone": "cobblestone.js"
   },
