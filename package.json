@@ -7,7 +7,6 @@
       "workspaces/**"
     ]
   },
-  "files": [],
   "prettier": "@will-stone/prettier-config",
   "eslintConfig": {
     "extends": [
