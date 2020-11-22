@@ -1,7 +1,19 @@
 # Cobblestone
 
+## Install
+
 ```sh
-$ yarn
-$ yarn workspace demo ssg
-$ yarn workspace demo serve
+yarn add cobblestone
+```
+
+## Build
+
+```sh
+yarn cobblestone
+```
+
+## Serve
+
+```sh
+npx serve site
 ```
