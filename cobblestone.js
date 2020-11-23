@@ -93,14 +93,6 @@ async function build() {
     result.css,
     console.error,
   )
-  if (result.map) {
-    fs.writeFile(
-      path.resolve('site', 'css', 'style.css.map'),
-      result.map,
-      console.error,
-    )
-  }
-
   console.timeEnd(paddedTimers['PostCSS:write'])
 
   console.log('Site built')
