@@ -24,15 +24,14 @@ const { parse: htmlParse } = require('node-html-parser')
 
 async function build() {
   // Tidy up
+  console.time('tidy-up')
   rimraf.sync(path.resolve('.cobblestone'))
   rimraf.sync(path.resolve('site'))
+  console.timeEnd('tidy-up')
 
+  console.time('find-pages')
   const pages = glob.sync('./pages/*.{js,jsx}')
-  const pagesObject = {}
-  for (const page of pages) {
-    const { name } = path.parse(page)
-    pagesObject[name] = path.resolve(page)
-  }
+  console.timeEnd('find-pages')
 
   pages.forEach((page) => {
     const { name } = path.parse(page)
@@ -52,9 +51,12 @@ async function build() {
         ? path.resolve('site', 'index.html')
         : path.resolve('site', name, 'index.html')
 
+    console.time('write-page')
     fs.outputFileSync(outPath, parsedHtml.toString(), console.error)
+    console.timeEnd('write-page')
   })
 
+  console.time('postcss')
   await postcss([
     tailwindcss,
     autoprefixer,
@@ -83,6 +85,7 @@ async function build() {
         )
       }
     })
+  console.timeEnd('postcss')
 
   console.log('Site built')
 }
