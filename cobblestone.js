@@ -22,16 +22,31 @@ const tailwindcss = require('tailwindcss')
 const purgecss = require('@fullhuman/postcss-purgecss')
 const { parse: htmlParse } = require('node-html-parser')
 
+const timers = [
+  'Prepare',
+  'Find pages',
+  'Write HTML',
+  'PostCSS:process',
+  'PostCSS:write',
+]
+const longestTimerStringLength = Math.max(
+  ...timers.map((element) => element.length),
+)
+const paddedTimers = {}
+for (const timer of timers) {
+  paddedTimers[timer] = timer.padEnd(longestTimerStringLength)
+}
+
 async function build() {
   // Tidy up
-  console.time('tidy-up')
+  console.time(paddedTimers.Prepare)
   rimraf.sync(path.resolve('.cobblestone'))
   rimraf.sync(path.resolve('site'))
-  console.timeEnd('tidy-up')
+  console.timeEnd(paddedTimers.Prepare)
 
-  console.time('find-pages')
+  console.time(paddedTimers['Find pages'])
   const pages = glob.sync('./pages/*.{js,jsx}')
-  console.timeEnd('find-pages')
+  console.timeEnd(paddedTimers['Find pages'])
 
   pages.forEach((page) => {
     const { name } = path.parse(page)
@@ -51,41 +66,42 @@ async function build() {
         ? path.resolve('site', 'index.html')
         : path.resolve('site', name, 'index.html')
 
-    console.time('write-page')
+    console.time(paddedTimers['Write HTML'])
     fs.outputFileSync(outPath, parsedHtml.toString(), console.error)
-    console.timeEnd('write-page')
+    console.timeEnd(paddedTimers['Write HTML'])
   })
 
-  console.time('postcss')
-  await postcss([
+  console.time(paddedTimers['PostCSS:process'])
+  const result = await postcss([
     tailwindcss,
     autoprefixer,
     purgecss({
       content: [path.resolve('site', '**', '*.html')],
     }),
-  ])
-    .process(
-      `
-          @tailwind base;
-          @tailwind components;
-          @tailwind utilities;`,
-      { from: undefined },
+  ]).process(
+    `
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;`,
+    { from: undefined },
+  )
+  console.timeEnd(paddedTimers['PostCSS:process'])
+
+  console.time(paddedTimers['PostCSS:write'])
+  fs.outputFileSync(
+    path.resolve('site', 'css', 'style.css'),
+    result.css,
+    console.error,
+  )
+  if (result.map) {
+    fs.writeFile(
+      path.resolve('site', 'css', 'style.css.map'),
+      result.map,
+      console.error,
     )
-    .then((result) => {
-      fs.outputFileSync(
-        path.resolve('site', 'css', 'style.css'),
-        result.css,
-        console.error,
-      )
-      if (result.map) {
-        fs.writeFile(
-          path.resolve('site', 'css', 'style.css.map'),
-          result.map,
-          console.error,
-        )
-      }
-    })
-  console.timeEnd('postcss')
+  }
+
+  console.timeEnd(paddedTimers['PostCSS:write'])
 
   console.log('Site built')
 }
