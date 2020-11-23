@@ -17,13 +17,13 @@
     "url": "https://wstone.io"
   },
   "bin": {
-    "cobblestone": "cobblestone.js"
+    "cobblestone": "lib/cobblestone.js"
   },
   "files": [
-    "cobblestone.js"
+    "lib"
   ],
   "scripts": {
-    "demo:build": "cd demo && node ../cobblestone.js",
+    "demo:build": "cd demo && node ../lib/cobblestone.js",
     "demo:serve": "cd demo && npx serve site",
     "release": "np",
     "test": "exit 0"
@@ -48,6 +48,7 @@
     "@babel/register": "^7.12.1",
     "@fullhuman/postcss-purgecss": "^3.0.0",
     "autoprefixer": "^10.0.2",
+    "cssnano": "^4.1.10",
     "fs-extra": "^9.0.1",
     "glob": "^7.1.6",
     "html-minifier": "^4.0.0",

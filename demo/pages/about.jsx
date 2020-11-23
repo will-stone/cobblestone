@@ -1,14 +1,16 @@
+import { Page } from '../components/page'
 import { PageTitle } from '../components/page-title'
 
 const About = () => {
   return (
-    <div>
+    <Page>
       <PageTitle>About</PageTitle>
-      <p>About page</p>
       <p>
-        <a href="/">Home</a>
+        <a className="underline" href="/">
+          Index
+        </a>
       </p>
-    </div>
+    </Page>
   )
 }
 

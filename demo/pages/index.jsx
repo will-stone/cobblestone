@@ -1,21 +1,21 @@
+import { Page } from '../components/page'
 import { PageTitle } from '../components/page-title'
 
 const Index = () => (
-  <html lang="en">
-    <head>
-      <meta charSet="utf-8" />
-    </head>
-    <body className="container">
-      <div>
-        <PageTitle>Hello</PageTitle>
-        <p>hello</p>
-        <p className="text-blue-300">
-          <a href="/about">About</a>
-          <span className="text-transparent">transparent?</span>
-        </p>
-      </div>
-    </body>
-  </html>
+  <Page>
+    <PageTitle>Index</PageTitle>
+    <a className="underline" href="/about">
+      About
+    </a>
+    <p className="text-gray-500">gray</p>
+    <p className="text-red-500">red</p>
+    <p className="text-blue-500">blue</p>
+    <p className="text-orange-500">orange</p>
+    <p className="text-yellow-500">yellow</p>
+    <p className="text-pink-500">pink</p>
+    <p className="text-teal-500">teal</p>
+    <p className="text-green-500">green</p>
+  </Page>
 )
 
 export default Index
