@@ -17,14 +17,14 @@
     "url": "https://wstone.io"
   },
   "bin": {
-    "cobblestone": "lib/cobblestone.js"
+    "cobblestone": "lib/index.js"
   },
   "files": [
     "lib"
   ],
   "scripts": {
-    "demo:build": "cd demo && node ../lib/cobblestone.js",
-    "demo:serve": "cd demo && npx serve site",
+    "demo:build": "cd demo && NODE_ENV=production node ../lib/index.js",
+    "demo:serve": "cd demo && node ../lib/index.js",
     "release": "np",
     "test": "exit 0"
   },
@@ -48,13 +48,16 @@
     "@babel/register": "^7.12.1",
     "@fullhuman/postcss-purgecss": "^3.0.0",
     "autoprefixer": "^10.0.2",
+    "chokidar": "^3.4.3",
     "cssnano": "^4.1.10",
+    "del": "^6.0.0",
     "fs-extra": "^9.0.1",
-    "glob": "^7.1.6",
+    "globby": "^11.0.1",
     "html-minifier": "^4.0.0",
+    "micro": "^9.3.4",
     "node-html-parser": "^2.0.0",
     "postcss": "^8.1.9",
-    "rimraf": "^3.0.2",
+    "serve-handler": "^6.1.3",
     "tailwindcss": "^2.0.1"
   },
   "devDependencies": {
