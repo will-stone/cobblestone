@@ -47,6 +47,7 @@
     "@babel/preset-react": "^7.12.5",
     "@babel/register": "^7.12.1",
     "@fullhuman/postcss-purgecss": "^3.0.0",
+    "@sindresorhus/is": "^4.0.0",
     "@tinyhttp/app": "^0.5.34",
     "autoprefixer": "^10.0.2",
     "chalk": "^4.1.0",
