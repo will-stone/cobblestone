@@ -4,9 +4,14 @@ import { PageTitle } from '../components/page-title'
 const Index = () => (
   <Page>
     <PageTitle>Index</PageTitle>
-    <a className="underline" href="/about">
-      About
-    </a>
+    <nav>
+      <a className="underline" href="/about">
+        About
+      </a>
+    </nav>
+    <p>
+      <img alt="" src="/image.png" />
+    </p>
     <p className="text-gray-500">gray</p>
     <p className="text-red-500">red</p>
     <p className="text-blue-500">blue</p>
