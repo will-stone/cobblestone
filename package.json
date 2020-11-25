@@ -64,7 +64,8 @@
     "pretty-ms": "^7.0.1",
     "sirv": "^1.0.7",
     "tailwindcss": "^2.0.1",
-    "time-span": "^4.0.0"
+    "time-span": "^4.0.0",
+    "ws": "^7.4.0"
   },
   "devDependencies": {
     "@will-stone/eslint-config": "^1.29.0",
