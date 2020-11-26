@@ -63,7 +63,6 @@
     "postcss": "^8.1.9",
     "pretty-ms": "^7.0.1",
     "sirv": "^1.0.7",
-    "tailwindcss": "^2.0.1",
     "time-span": "^4.0.0",
     "ws": "^7.4.0"
   },
@@ -74,11 +73,13 @@
     "np": "^7.0.0",
     "prettier": "^2.1.2",
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "tailwindcss": "^2.0.1"
   },
   "peerDependencies": {
     "react": "^17.0.1",
-    "react-dom": "^17.0.1"
+    "react-dom": "^17.0.1",
+    "tailwindcss": "^2.0.1"
   },
   "publishConfig": {
     "access": "public",
