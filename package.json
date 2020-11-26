@@ -1,6 +1,6 @@
 {
   "name": "cobblestone",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "private": false,
   "description": "A very opinionated static site generator",
   "bugs": {
