@@ -1,16 +1,13 @@
-import { React, ReactDomServer } from "./deps.ts";
-import { gray, underline } from "https://deno.land/std/fmt/colors.ts";
-import * as path from "https://deno.land/std@0.79.0/path/mod.ts";
-import { emptyDir } from "https://deno.land/std@0.79.0/fs/mod.ts";
+import { colors, fs, path, React, ReactDomServer } from "./deps.ts";
 
 console.clear();
 
-console.log(underline(gray("Cobblestone")));
+console.log(colors.underline(colors.gray("Cobblestone")));
 
 const cwd = Deno.cwd();
 
 // If build dir exists, empty it, if not, create it.
-await emptyDir(path.join(cwd, ".site"));
+await fs.emptyDir(path.join(cwd, ".site"));
 
 for await (const dirEntry of Deno.readDir("pages")) {
   const inPath = path.join(cwd, "pages", dirEntry.name);
