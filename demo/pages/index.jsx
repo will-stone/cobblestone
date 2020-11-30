@@ -3,7 +3,7 @@ import { Page } from "../components/page.jsx";
 
 const Index = () => (
   <Page>
-    <div>Index</div>
+    <div className="text-red-100">Index</div>
   </Page>
 );
 // <Page>
