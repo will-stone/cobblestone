@@ -11,21 +11,18 @@ const cwd = Deno.cwd();
 await fs.emptyDir(path.join(cwd, ".site"));
 
 for await (const file of fs.expandGlob("pages/**/*.jsx")) {
-  const { name } = path.parse(file.path);
-  const dir = path.dirname(file.path);
-  const relativeDir = path.relative(cwd, dir);
-  const [_, ...nestedDirs] = relativeDir.split(path.SEP);
-
-  const outFileArray = name === "index"
-    ? ["index.html"]
-    : [...nestedDirs, name, "index.html"];
-
   // Generate HTML from JSX
   const { default: component } = await import(file.path);
   const html = ReactDomServer.renderToStaticMarkup(
     React.createElement(component),
   );
 
+  const { name, dir } = path.parse(file.path);
+  const relativeDir = path.relative(cwd, dir);
+  const [_, ...nestedDirs] = relativeDir.split(path.SEP);
+  const outFileArray = name === "index"
+    ? ["index.html"]
+    : [...nestedDirs, name, "index.html"];
   const outPath = path.join(cwd, ".site", ...outFileArray);
   await fs.ensureFile(outPath);
   await Deno.writeTextFile(outPath, html);
