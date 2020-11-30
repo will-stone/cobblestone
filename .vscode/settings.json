@@ -4,5 +4,17 @@
     "statusBar.foreground": "#e7e7e7",
     "statusBarItem.hoverBackground": "#475068"
   },
-  "peacock.color": "#32394A"
+  "peacock.color": "#32394A",
+  "deno.enable": true,
+  "[typescript]": {
+    "editor.defaultFormatter": "denoland.vscode-deno"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "denoland.vscode-deno"
+  },
+  "deno.unstable": true,
+  "deno.lint": true,
+  "deno.import_intellisense_origins": {
+    "https://deno.land": true
+  }
 }

@@ -1,3 +1,5 @@
+import { React } from "../deps.js";
+
 export const Page = ({ children }) => (
   <html lang="en">
     <head>
@@ -6,4 +8,4 @@ export const Page = ({ children }) => (
     </head>
     <body className="container">{children}</body>
   </html>
-)
+);

@@ -23,22 +23,10 @@
     "lib"
   ],
   "scripts": {
-    "demo:build": "cd demo && NODE_ENV=production node ../lib/index.js",
+    "demo:build": "cd demo && deno run --allow-read ../lib/index.ts",
     "demo:serve": "cd demo && node ../lib/index.js",
     "release": "np",
     "test": "exit 0"
-  },
-  "prettier": "@will-stone/prettier-config",
-  "eslintConfig": {
-    "extends": [
-      "@will-stone/eslint-config",
-      "@will-stone/eslint-config/node",
-      "@will-stone/eslint-config/react"
-    ],
-    "rules": {
-      "no-console": "off",
-      "node/global-require": "off"
-    }
   },
   "dependencies": {
     "@apexearth/copy": "^1.4.5",
@@ -69,16 +57,5 @@
     "tailwindcss": "^2.0.1",
     "time-span": "^4.0.0",
     "ws": "^7.4.0"
-  },
-  "devDependencies": {
-    "@will-stone/eslint-config": "^1.29.0",
-    "@will-stone/prettier-config": "^3.1.1",
-    "eslint": "^7.14.0",
-    "np": "^7.0.0",
-    "prettier": "^2.1.2"
-  },
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
   }
 }
