@@ -1,20 +1,23 @@
 import clsx from 'clsx'
 
-import { pageInfo } from '../../lib/main'
+import { usePageInfo } from '../../lib/main'
 
-const NavLink = ({ href, children }) => (
-  <li>
-    <a
-      className={clsx(
-        pageInfo.pathname === href && 'bg-pink-500 text-white',
-        'p-1',
-      )}
-      href={href}
-    >
-      {children}
-    </a>
-  </li>
-)
+const NavLink = ({ href, children }) => {
+  const pageInfo = usePageInfo()
+  return (
+    <li>
+      <a
+        className={clsx(
+          pageInfo.pathname === href && 'bg-pink-500 text-white',
+          'p-1',
+        )}
+        href={href}
+      >
+        {children}
+      </a>
+    </li>
+  )
+}
 
 export const Page = ({ children }) => (
   <html lang="en">
@@ -35,8 +38,6 @@ export const Page = ({ children }) => (
           <NavLink href="/nested/nest">Nested Page</NavLink>
         </ul>
       </nav>
-
-      <code>{pageInfo.pathname}</code>
 
       {children}
     </body>
