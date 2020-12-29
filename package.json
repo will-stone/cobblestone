@@ -16,6 +16,7 @@
     "email": "will@wstone.io",
     "url": "https://wstone.io"
   },
+  "main": "lib/main.js",
   "bin": {
     "cobblestone": "lib/index.js"
   },
@@ -82,5 +83,8 @@
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
+  },
+  "peerDependencies": {
+    "clsx": "^1.1.1"
   }
 }

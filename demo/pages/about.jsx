@@ -5,11 +5,7 @@ const About = () => {
   return (
     <Page>
       <PageTitle>About</PageTitle>
-      <p>
-        <a className="underline" href="/">
-          Index
-        </a>
-      </p>
+      <p>The about page</p>
     </Page>
   )
 }
