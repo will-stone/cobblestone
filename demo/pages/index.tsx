@@ -1,5 +1,5 @@
-import { React } from "../deps.js";
-import { Page } from "../components/page.jsx";
+import { React } from "../deps.ts";
+import { Page } from "../components/page.tsx";
 
 const Index = () => (
   <Page>

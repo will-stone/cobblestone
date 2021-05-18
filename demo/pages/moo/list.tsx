@@ -1,5 +1,5 @@
-import { React } from "../../deps.js";
-import { Page } from "../../components/page.jsx";
+import { Page } from "../../components/page.tsx";
+import { React } from "../../deps.ts";
 
 const List = () => (
   <Page>

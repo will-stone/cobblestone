@@ -1,6 +1,6 @@
-import { React } from "../deps.js";
+import { React } from "../deps.ts";
 
-export const Page = ({ children }) => (
+export const Page = ({ children }: { children: React.ReactNode }) => (
   <html lang="en">
     <head>
       <meta charSet="utf-8" />

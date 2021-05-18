@@ -1,11 +1,14 @@
-import React from "https://esm.sh/react@17.0.1";
-import * as ReactDomServer from "https://esm.sh/react-dom@17.0.1/server";
-import * as colors from "https://deno.land/std@0.79.0/fmt/colors.ts";
-import * as path from "https://deno.land/std@0.79.0/path/mod.ts";
-import * as fs from "https://deno.land/std@0.79.0/fs/mod.ts";
-import { DOMParser } from "https://deno.land/x/deno_dom/deno-dom-wasm.ts";
-import postcss from "https://deno.land/x/postcss/mod.js";
-import tailwind from 'https://esm.sh/tailwindcss@2.0.1'
+import {
+  autoprefixer,
+  colors,
+  DOMParser,
+  fs,
+  path,
+  postcss,
+  purgecss,
+  React,
+  ReactDomServer,
+} from "./deps.ts";
 
 console.clear();
 
@@ -20,7 +23,7 @@ await fs.emptyDir(path.join(cwd, ".site"));
 /**
  * Pages
  */
-for await (const file of fs.expandGlob("pages/**/*.jsx")) {
+for await (const file of fs.expandGlob("pages/**/*.tsx")) {
   // Generate HTML from JSX
   const { default: component } = await import(file.path);
   const html = ReactDomServer.renderToStaticMarkup(
@@ -52,6 +55,22 @@ for await (const file of fs.expandGlob("pages/**/*.jsx")) {
 
   console.log(`${colors.green("✔")} ${outFileArray.join("/")}`);
 }
+
+const twCss = await fetch(
+  new URL("https://esm.sh/tailwindcss/dist/tailwind.min.css", import.meta.url),
+).then((response) => response.text());
+
+/**
+ * CSS
+ */
+const cssFileName = "style.css";
+const cssFilePath = path.join(cwd, ".site", cssFileName);
+const { css } = await postcss([autoprefixer, purgecss]).process(twCss, {
+  from: undefined,
+});
+await fs.ensureFile(cssFilePath);
+await Deno.writeTextFile(cssFilePath, css);
+console.log(`${colors.green("✔")} ${cssFileName}`);
 
 /**
  * CSS
